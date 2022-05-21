@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="Estatus">
+        <item>Estatus</item>
+        <item>Activo</item>
+        <item>Inactiv0</item>
+    </array>
+</resources>

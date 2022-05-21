@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="Estados">
+        <item>Estado</item>
+        <item>Nuevo</item>
+        <item>Usado</item>
+    </array>
+</resources>

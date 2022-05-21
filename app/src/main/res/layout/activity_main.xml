@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".MainActivity">
+
+    <Spinner
+        android:id="@+id/sEstatus"
+        android:layout_width="190dp"
+        android:layout_height="48dp"
+        android:entries="@array/Estatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svBuscar" />
+
+    <ImageView
+        android:id="@+id/ivUsuario"
+        android:layout_width="100dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Bienvenido usuario anonimo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivUsuario"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="381dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivUsuario"
+        app:srcCompat="@android:drawable/bottom_bar" />
+
+    <SearchView
+        android:id="@+id/svBuscar"
+        android:layout_width="393dp"
+        android:layout_height="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+
+    <Spinner
+        android:id="@+id/sEstados"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:entries="@array/Estados"
+        app:layout_constraintEnd_toStartOf="@+id/sEstatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svBuscar" />
+
+    <Spinner
+        android:id="@+id/sCategorias"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:entries="@array/Categorias"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sEstados"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvUserCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Correo del Usuario"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toEndOf="@+id/ivUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuario" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductos"
+        android:layout_width="0dp"
+        android:layout_height="335dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sCategorias" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

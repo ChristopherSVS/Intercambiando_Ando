@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".PerfilActivity">
+
+    <TextView
+        android:id="@+id/tvID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Id del Usuario"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivUsuarioFoto" />
+
+    <Spinner
+        android:id="@+id/sStatus"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:entries="@array/Estatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sEst"
+        app:layout_constraintTop_toBottomOf="@+id/svHistorial" />
+
+    <TextView
+        android:id="@+id/tvUsuarioCorreo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Correo del Usuario"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivUsuarioFoto"
+        app:layout_constraintTop_toBottomOf="@+id/etUsuarioNom" />
+
+    <ImageView
+        android:id="@+id/ivUsuarioFoto"
+        android:layout_width="147dp"
+        android:layout_height="158dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/tvUsuarioNom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Usuario"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivUsuarioFoto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etUsuarioNom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivUsuarioFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNom" />
+
+    <EditText
+        android:id="@+id/etUsuarioCorreo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivUsuarioFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioCorreo"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/bUsuarioContra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Cambiar Contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bUsuarioEdit"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioCreacion" />
+
+    <Button
+        android:id="@+id/bUsuarioBorra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Borrar Usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bUsuarioContra" />
+
+    <Button
+        android:id="@+id/bUsuarioEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Editar Perfil"
+        app:layout_constraintEnd_toStartOf="@+id/bUsuarioContra"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioCreacion" />
+
+    <TextView
+        android:id="@+id/tvUsuarioCreacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Creacion de la Cuenta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvID" />
+
+    <TextView
+        android:id="@+id/tvUsuarioHistorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Historial de Articulos Subidos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bUsuarioBorra" />
+
+    <SearchView
+        android:id="@+id/svHistorial"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioHistorial" />
+
+    <Spinner
+        android:id="@+id/sEst"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:entries="@array/Estados"
+        app:layout_constraintEnd_toStartOf="@+id/sStatus"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svHistorial" />
+
+    <Spinner
+        android:id="@+id/sCat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/Categorias"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sStatus" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSubidos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sCat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

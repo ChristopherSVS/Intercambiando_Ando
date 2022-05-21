@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="Categorias">
+        <item>Categorias</item>
+        <item>Ropa</item>
+        <item>zapatos</item>
+        <item>Electronica</item>
+        <item>Juguetes</item>
+        <item>Accesorios</item>
+        <item>Digitales</item>
+    </array>
+</resources>
