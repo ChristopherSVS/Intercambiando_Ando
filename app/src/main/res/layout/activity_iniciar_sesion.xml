@@ -11,30 +11,30 @@
         android:id="@+id/bRecuperar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:text="Recuperar Contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasena4" />
+        app:layout_constraintTop_toBottomOf="@+id/tvErrorContrasena" />
 
     <TextView
         android:id="@+id/tvContrasena2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Contraseña del usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreo2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvErrorUser" />
 
     <TextView
         android:id="@+id/tvUser2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:text="Correo de usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/etContrasena4"
+        android:id="@+id/etContra"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -85,12 +85,12 @@
         android:id="@+id/bIniciar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="32dp"
         android:text="Iniciar Sesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasena4" />
+        app:layout_constraintTop_toBottomOf="@+id/bRecuperar" />
 
     <ImageView
         android:id="@+id/ivLogo3"
@@ -102,4 +102,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvIniciar"
         app:srcCompat="@android:drawable/bottom_bar" />
+
+    <TextView
+        android:id="@+id/tvErrorUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo de usuario incorrecto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCorreo2" />
+
+    <TextView
+        android:id="@+id/tvErrorContrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña de usuario incorrecta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContra" />
 </androidx.constraintlayout.widget.ConstraintLayout>

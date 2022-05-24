@@ -8,10 +8,9 @@
     tools:context=".NuevaSesionActivity">
 
     <EditText
-        android:id="@+id/etContrasena2"
+        android:id="@+id/etContrasenaConfi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -42,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvErrorName" />
 
     <TextView
         android:id="@+id/tvContrasena"
@@ -53,13 +52,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
+        app:layout_constraintTop_toBottomOf="@+id/tvErrorCorreo" />
 
     <EditText
-        android:id="@+id/etNombre2"
+        android:id="@+id/etNombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -73,7 +71,7 @@
         android:id="@+id/tvUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Nombre de usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +95,6 @@
         android:id="@+id/etCorreo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
@@ -111,7 +108,6 @@
         android:id="@+id/etContrasena"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -125,22 +121,59 @@
         android:id="@+id/bCrearUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="Crear Usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasena2" />
+        app:layout_constraintStart_toEndOf="@+id/bImagen"
+        app:layout_constraintTop_toTopOf="@+id/bImagen" />
 
     <ImageView
         android:id="@+id/ivLogo2"
         android:layout_width="0dp"
         android:layout_height="71dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCuenta"
         app:srcCompat="@android:drawable/bottom_bar" />
+
+    <TextView
+        android:id="@+id/tvContraError"
+        android:layout_width="239dp"
+        android:layout_height="23dp"
+        android:text="Las contraseñas no coinciden"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContrasenaConfi" />
+
+    <TextView
+        android:id="@+id/tvErrorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="El nombre de usuario ya esta utilizado"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+
+    <TextView
+        android:id="@+id/tvErrorCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo de usuario invalido"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
+
+    <Button
+        android:id="@+id/bImagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Agregar Imagen"
+        app:layout_constraintEnd_toStartOf="@+id/bCrearUsuario"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvContraError" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
