@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "700872297050",
+    "project_id": "intercambiandoando-c1a19",
+    "storage_bucket": "intercambiandoando-c1a19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700872297050:android:59c23f2ab33bdd41d4a663",
+        "android_client_info": {
+          "package_name": "com.example.intercambiando_ando"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700872297050-4nosjtj2u5u8b5rskqch8dgn84ghs4jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJQmsLleTdBUM1WwiZT4GUuG5f2cU_xnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700872297050-4nosjtj2u5u8b5rskqch8dgn84ghs4jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
