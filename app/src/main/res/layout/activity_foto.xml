@@ -35,13 +35,13 @@
     <ImageView
         android:id="@+id/ivLogo6"
         android:layout_width="0dp"
-        android:layout_height="93dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/bottom_bar" />
+        app:srcCompat="@drawable/logotipo" />
 
     <ImageButton
         android:id="@+id/ibFoto"

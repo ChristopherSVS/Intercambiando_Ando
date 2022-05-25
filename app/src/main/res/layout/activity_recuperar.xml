@@ -11,7 +11,7 @@
         android:id="@+id/tvrep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="Recuperacion de Contraseña"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,13 +22,13 @@
     <ImageView
         android:id="@+id/ivLogo4"
         android:layout_width="0dp"
-        android:layout_height="86dp"
+        android:layout_height="149dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvrep"
-        app:srcCompat="@android:drawable/bottom_bar" />
+        app:srcCompat="@drawable/logotipo" />
 
     <TextView
         android:id="@+id/tvCor"

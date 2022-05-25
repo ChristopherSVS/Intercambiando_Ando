@@ -71,7 +71,7 @@
         android:id="@+id/tvUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Nombre de usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         android:id="@+id/tvCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Crea una cuenta nueva"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,13 +130,12 @@
     <ImageView
         android:id="@+id/ivLogo2"
         android:layout_width="0dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCuenta"
-        app:srcCompat="@android:drawable/bottom_bar" />
+        app:srcCompat="@drawable/logotipo" />
 
     <TextView
         android:id="@+id/tvContraError"
@@ -169,7 +168,7 @@
         android:id="@+id/bImagen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:text="Agregar Imagen"
         app:layout_constraintEnd_toStartOf="@+id/bCrearUsuario"
         app:layout_constraintHorizontal_bias="0.5"

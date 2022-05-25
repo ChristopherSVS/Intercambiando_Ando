@@ -60,38 +60,6 @@
         app:layout_constraintStart_toEndOf="@+id/ibUsuario"
         app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNom" />
 
-    <Button
-        android:id="@+id/bEditContra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Cambiar Contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bEdit"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioCreacion" />
-
-    <Button
-        android:id="@+id/bDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Borrar Usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bEditContra" />
-
-    <Button
-        android:id="@+id/bEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Cambiar nombre"
-        app:layout_constraintEnd_toStartOf="@+id/bEditContra"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioCreacion" />
-
     <TextView
         android:id="@+id/tvUsuarioCreacion"
         android:layout_width="0dp"
@@ -107,13 +75,12 @@
         android:id="@+id/tvUsuarioHistorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Historial de Articulos Subidos"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bDelete" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioCreacion" />
 
     <SearchView
         android:id="@+id/svHistorial"

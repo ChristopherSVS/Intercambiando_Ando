@@ -16,7 +16,6 @@ public class PerfilActivity extends AppCompatActivity {
     private ImageButton ibUsuario;
     private TextView tvUsuarioCreacion, tvCorreoPerfil, tvID;
     private EditText etUsername;
-    private Button bEdit, bEditContra, bDelete;
     private SearchView svHistorial;
     private Spinner sEst, sCat, sStatus;
     private RecyclerView rvHistorial;
@@ -31,10 +30,6 @@ public class PerfilActivity extends AppCompatActivity {
         tvCorreoPerfil = findViewById(R.id.tvCorreoPerfil);
         tvID = findViewById(R.id.tvID);
         tvUsuarioCreacion = findViewById(R.id.tvUsuarioCreacion);
-
-        bEdit = findViewById(R.id.bEdit);
-        bEditContra = findViewById(R.id.bEditContra);
-        bDelete = findViewById(R.id.bDelete);
 
         svHistorial = findViewById(R.id.svHistorial);
 

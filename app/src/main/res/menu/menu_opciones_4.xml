@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_opc_nom"
+        android:title="Cambiar nombre" />
+    <item
+        android:id="@+id/menu_opc_cam"
+        android:title="Cambiat contraseña" />
+    <item
+        android:id="@+id/menu_opc_borra"
+        android:title="Borrar cuenta" />
+</menu>

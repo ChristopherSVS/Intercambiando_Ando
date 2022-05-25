@@ -19,7 +19,7 @@
         android:id="@+id/ivUsuario"
         android:layout_width="100dp"
         android:layout_height="84dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:id="@+id/tvUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Bienvenido usuario anonimo"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp"
@@ -40,14 +40,14 @@
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="381dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivUsuario"
-        app:srcCompat="@android:drawable/bottom_bar" />
+        app:srcCompat="@drawable/logotipo" />
 
     <SearchView
         android:id="@+id/svBuscar"
@@ -82,7 +82,7 @@
         android:id="@+id/tvUserCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Correo del Usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductos"
         android:layout_width="0dp"
-        android:layout_height="335dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
