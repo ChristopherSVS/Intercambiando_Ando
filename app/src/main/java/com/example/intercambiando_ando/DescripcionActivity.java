@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,9 +20,10 @@ public class DescripcionActivity extends AppCompatActivity {
 
     private ImageButton ibProducto;
     private TextView tvUserProducto, tvIDProducto;
-    private EditText etNomProducto;
-    private Spinner sEstProducto, sEstusProdcto, sCatProducto;
+    private EditText etNomProducto, etCatProducto;
     private Button bOfertas;
+    private RadioGroup rgEstado, rgEstatus;
+    private RadioButton rbNuevo, rbViejo, rbActivo, rbInactivo;
 
     private int id = 0;
 
@@ -36,9 +39,15 @@ public class DescripcionActivity extends AppCompatActivity {
 
         etNomProducto = findViewById(R.id.etNomProducto);
 
-        sEstProducto = findViewById(R.id.sEstProducto);
-        sEstusProdcto = findViewById(R.id.sEstusProducto);
-        sCatProducto = findViewById(R.id.sCatProducto);
+        etCatProducto = findViewById(R.id.etCatProducto);
+
+        rgEstado = findViewById(R.id.rgEstado);
+        rgEstatus = findViewById(R.id.rgEstadus);
+
+        rbNuevo = findViewById(R.id.rbNuevo);
+        rbViejo = findViewById(R.id.rbViejo);
+        rbActivo = findViewById(R.id.rbActivo);
+        rbInactivo = findViewById(R.id.rbInactivo);
 
         bOfertas = findViewById(R.id.bOfertas);
 

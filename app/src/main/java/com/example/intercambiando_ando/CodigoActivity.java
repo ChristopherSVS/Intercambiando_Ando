@@ -36,7 +36,7 @@ public class CodigoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    
+                    tvErrorCodigo.setVisibility(View.VISIBLE);
                 }
             }
         });

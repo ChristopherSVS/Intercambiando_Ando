@@ -55,7 +55,7 @@ public class FotoActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == ACCION_SELECCION_IMAGEN) {
                 Uri uri = data.getData();
-                /*
+
                 StorageReference storageRef = storage.getReference().child("images/" + uri.getLastPathSegment() + "_" + System.currentTimeMillis());
 
                 storageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -66,19 +66,19 @@ public class FotoActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
 
-                                Mensaje mensaje = new Mensaje();
-                                mensaje.setNombre("User");
-                                mensaje.setFechaHora(System.currentTimeMillis());
-                                mensaje.setImagen(uri.toString());
-                                myRef.push().setValue(mensaje);
+                                GuardarFoto(uri.toString());
 
                             }
                         });
 
                     }
                 });
-                */
+
             }
         }
+    }
+
+    private void GuardarFoto(String toString) {
+
     }
 }

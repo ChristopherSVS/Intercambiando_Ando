@@ -20,9 +20,9 @@ public class PerfilActivity extends AppCompatActivity {
 
     private ImageButton ibUsuario;
     private TextView tvUsuarioCreacion, tvCorreoPerfil, tvID;
-    private EditText etUsername;
+    private EditText etUsername, etCat;
     private SearchView svHistorial;
-    private Spinner sEst, sCat, sStatus;
+    private Spinner sEst, sStatus;
     private RecyclerView rvHistorial;
 
     @Override
@@ -32,6 +32,9 @@ public class PerfilActivity extends AppCompatActivity {
 
         ibUsuario = findViewById(R.id.ibUsuario);
 
+        etUsername = findViewById(R.id.etUsername);
+        etCat = findViewById(R.id.etCat);
+
         tvCorreoPerfil = findViewById(R.id.tvCorreoPerfil);
         tvID = findViewById(R.id.tvID);
         tvUsuarioCreacion = findViewById(R.id.tvUsuarioCreacion);
@@ -39,7 +42,6 @@ public class PerfilActivity extends AppCompatActivity {
         svHistorial = findViewById(R.id.svHistorial);
 
         sEst = findViewById(R.id.sEst);
-        sCat = findViewById(R.id.sCat);
         sStatus = findViewById(R.id.sStatus);
 
         rvHistorial = findViewById(R.id.rvHistorial);
@@ -96,6 +98,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void borrarPerfil() {
+
     }
 
 }

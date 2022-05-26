@@ -52,13 +52,14 @@
         android:id="@+id/etUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:editable="false"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ibUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNom" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuarioNom"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/tvUsuarioCreacion"
@@ -100,17 +101,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svHistorial" />
 
-    <Spinner
-        android:id="@+id/sCat"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/Categorias"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sStatus" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistorial"
         android:layout_width="0dp"
@@ -119,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sCat" />
+        app:layout_constraintTop_toBottomOf="@+id/etCat" />
 
     <TextView
         android:id="@+id/tvCorreoPerfil"
@@ -140,5 +130,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/etCat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Categoria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sEst" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

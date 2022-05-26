@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
 
     // Write a message to the database
+    /*
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("https://intercambiandoando-c1a19-default-rtdb.firebaseio.com/");
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
