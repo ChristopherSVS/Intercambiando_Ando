@@ -7,7 +7,7 @@
         android:title="Cambiar nombre" />
     <item
         android:id="@+id/menu_opc_cam"
-        android:title="Cambiat contraseña" />
+        android:title="Cambiar contraseña" />
     <item
         android:id="@+id/menu_opc_borra"
         android:title="Borrar cuenta" />

@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibFoto"
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -43,16 +43,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logotipo" />
 
-    <ImageButton
-        android:id="@+id/ibFoto"
-        android:layout_width="245dp"
-        android:layout_height="249dp"
-        android:layout_marginTop="50dp"
+    <ImageView
+        android:id="@+id/ivFoto"
+        android:layout_width="254dp"
+        android:layout_height="233dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvImagen"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

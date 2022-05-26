@@ -2,7 +2,9 @@ package com.example.intercambiando_ando;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +29,22 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
         bRecuperar = findViewById(R.id.bRecuperar);
         bIniciar = findViewById(R.id.bIniciar);
+
+        bIniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(IniciarSesionActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        bRecuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(IniciarSesionActivity.this, RecuperarActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

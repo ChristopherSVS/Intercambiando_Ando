@@ -121,11 +121,12 @@
         android:id="@+id/bCrearUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Crear Usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bImagen"
-        app:layout_constraintTop_toTopOf="@+id/bImagen" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvContraError" />
 
     <ImageView
         android:id="@+id/ivLogo2"
@@ -163,16 +164,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
-
-    <Button
-        android:id="@+id/bImagen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Agregar Imagen"
-        app:layout_constraintEnd_toStartOf="@+id/bCrearUsuario"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvContraError" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
