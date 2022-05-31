@@ -7,36 +7,36 @@
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/tvArticulo5"
+        android:id="@+id/tvArticuloEstatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Estatus del Articulo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ivArticulo"
-        app:layout_constraintTop_toBottomOf="@+id/tvArticulo4" />
+        app:layout_constraintTop_toBottomOf="@+id/tvArticuloCategoria" />
 
     <TextView
-        android:id="@+id/tvArticulo4"
+        android:id="@+id/tvArticuloCategoria"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Categoria del Articulo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toEndOf="@+id/ivArticulo"
-        app:layout_constraintTop_toBottomOf="@+id/tvArticulo3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvArticuloEstado" />
 
     <TextView
-        android:id="@+id/tvArticulo3"
+        android:id="@+id/tvArticuloEstado"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Estado del Articulo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivArticulo"
-        app:layout_constraintTop_toBottomOf="@+id/tvArticulo2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPropietario" />
 
     <ImageView
         android:id="@+id/ivArticulo"
@@ -53,21 +53,32 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Nombre del Articulo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ivArticulo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvArticulo2"
+        android:id="@+id/tvPropietario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Nombre del Usuario"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="Nombre del Propietario"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toEndOf="@+id/ivArticulo"
         app:layout_constraintTop_toBottomOf="@+id/tvArticulo" />
+
+    <TextView
+        android:id="@+id/tvArticuloCreacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Creacion del Articulo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivArticulo"
+        app:layout_constraintTop_toBottomOf="@+id/tvArticuloEstatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
