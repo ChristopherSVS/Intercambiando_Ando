@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String U_USERNAME = "P_USERNAME";
     public static final String U_EMAIL = "P_USERNAME";
     public static final String U_IMAGEN = "P_IMAGEN";
-    public static String NombreOriginal = "";
+    private static String NombreOriginal = "";
 
     private ImageView ivLogo, ivUsuario;
     private TextView tvUsuario, tvUserCorreo, tvUserID;
@@ -179,12 +179,10 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
         if (intent != null) {
             String indicador = intent.getStringExtra(U_ID);
-            this.NombreOriginal = intent.getStringExtra(U_USERNAME);
-            if (!indicador.equals("") || !indicador.equals(null) || !indicador.equals("0") || id != 0) {
-                this.id = Integer.getInteger(indicador);
-            }
+            NombreOriginal = intent.getStringExtra(U_USERNAME);
+            id = Integer.getInteger(indicador);
         }else{
-            this.id = 0;
+            id = 0;
         }
     }
 
@@ -297,23 +295,23 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
                     JSONObject fila = response.getJSONObject(i);
 
-                    int id = fila.getInt("id");
+                    int iden = fila.getInt("id");
                     String username = fila.getString("username");
                     String email = fila.getString("email");
                     String imagen = fila.getString("imagen");
 
                     Usuarios usuarios = new Usuarios();
 
-                    usuarios.setId(id);
+                    usuarios.setId(iden);
                     usuarios.setUsername(username);
                     usuarios.setEmail(email);
                     usuarios.setImagen(imagen);
 
-                    if (id == this.id) {
+                    if (iden == id) {
                         tvUsuario.setText(username);
                         NombreOriginal = username;
                         tvUserCorreo.setText(email);
-                        tvUserID.setText("ID del Usuario: " + id);
+                        tvUserID.setText("ID del Usuario: " + iden);
                         if (!imagen.equals("")){
                             Picasso.get().load(imagen).into(ivUsuario);
                         }else{
@@ -383,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         String username = tvUsuario.getText().toString().trim();
         String email = tvUserCorreo.getText().toString().trim();
         Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
-        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_ID, id);
         intent.putExtra(U_EMAIL, email);
         intent.putExtra(U_USERNAME, username);
         startActivity(intent);
@@ -392,13 +390,13 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     private void agregarProducto() {
         String username = tvUsuario.getText().toString().trim();
         Intent intent = new Intent(MainActivity.this, DescripcionActivity.class);
-        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_ID, id);
         intent.putExtra(U_USERNAME, username);
         startActivity(intent);
     }
 
     private void cerrarSesion() {
-        this.id = 0;
+        id = 0;
         tvUsuario.setText("Anonimo");
         NombreOriginal = "";
         tvUserCorreo.setText("Usuario no registrado");

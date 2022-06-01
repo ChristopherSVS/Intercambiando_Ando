@@ -31,7 +31,7 @@ public class CodigoActivity extends AppCompatActivity {
         bVerifica = findViewById(R.id.bVerifica);
 
         Intent intent = getIntent();
-        this.id = intent.getIntExtra(RecuperarActivity.U_ID, id);
+        id = intent.getIntExtra(RecuperarActivity.U_ID, 0);
 
         bVerifica.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -146,7 +146,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 }
             }
         }else{
-            this.id = 0;
+            id = 0;
             tvIDProducto.setText("ID del producto");
             tvUserProducto.setText(intent.getStringExtra(U_USERNAME));
             etNomProducto.setText("");
@@ -270,7 +270,7 @@ public class DescripcionActivity extends AppCompatActivity {
 
                         if (product.equals(prop) && user.equals(username)) {
                             tvIDProducto.setText("Id del Producto: " + codigo);
-                            this.id = codigo;
+                            id = codigo;
                             etCatProducto.setText(categoria);
                             if(estado.equals("Nuevo")){
                                 rbNuevo.setChecked(true);

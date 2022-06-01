@@ -62,7 +62,7 @@ public class NuevaContraActivity extends AppCompatActivity {
         bNuevaContra = findViewById(R.id.bNuevaContra);
 
         Intent intent = getIntent();
-        this.id = intent.getIntExtra(U_ID, id);
+        id = intent.getIntExtra(U_ID, id);
 
         bNuevaContra.setOnClickListener(new View.OnClickListener() {
             @Override

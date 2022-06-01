@@ -84,18 +84,18 @@ public class RecuperarActivity extends AppCompatActivity {
 
                     JSONObject fila = response.getJSONObject(i);
 
-                    int id = fila.getInt("id");
+                    int iden = fila.getInt("id");
                     String username = fila.getString("username");
                     String email = fila.getString("email");
 
                     Usuarios usuarios = new Usuarios();
 
-                    usuarios.setId(id);
+                    usuarios.setId(iden);
                     usuarios.setEmail(email);
                     usuarios.setUsername(username);
 
                     if (correo.equals(email)) {
-                        this.id = id;
+                        id = iden;
                         enviarCorreo(email,username);
                         break;
                     }else{
@@ -127,7 +127,7 @@ public class RecuperarActivity extends AppCompatActivity {
 
     private void envioCodigo() {
         Intent intent = new Intent(RecuperarActivity.this, CodigoActivity.class);
-        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_ID, id);
         startActivity(intent);
     }
 }

@@ -142,7 +142,7 @@ public class NuevaSesionActivity extends AppCompatActivity {
 
                     JSONObject fila = response.getJSONObject(i);
 
-                    int id = fila.getInt("id");
+                    int iden = fila.getInt("id");
                     String username = fila.getString("username");
                     String password = fila.getString("password");
                     String email = fila.getString("email");
@@ -151,7 +151,7 @@ public class NuevaSesionActivity extends AppCompatActivity {
 
                     Usuarios usuarios = new Usuarios();
 
-                    usuarios.setId(id);
+                    usuarios.setId(iden);
                     usuarios.setUsername(username);
                     usuarios.setPassword(password);
                     usuarios.setEmail(email);
@@ -161,7 +161,7 @@ public class NuevaSesionActivity extends AppCompatActivity {
                     if (!nom.equals(username)) {
                         if(!cor.equals(email)){
                             if (pass.equals(contra)) {
-                                this.id = id;
+                                id = iden;
                                 guardarDatos();
                                 break;
                             }else{

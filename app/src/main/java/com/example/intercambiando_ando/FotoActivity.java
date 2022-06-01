@@ -115,7 +115,7 @@ public class FotoActivity extends AppCompatActivity {
 
         Map<String, String> mapa = new HashMap<>();
 
-        this.id = Integer.getInteger(iden);
+        id = Integer.getInteger(iden);
         mapa.put("id",String.valueOf(id));
         mapa.put("imagen", toString);
 

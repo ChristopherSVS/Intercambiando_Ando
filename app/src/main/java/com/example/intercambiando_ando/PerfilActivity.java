@@ -179,14 +179,14 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
     private void mostrarUsuario(JSONArray response) {
         Intent intent = getIntent();
         if (intent != null) {
-            this.id = intent.getIntExtra(U_ID,id);
+            id = intent.getIntExtra(U_ID,0);
             if (response != null) {
                 try {
                     for (int i = 0; i < response.length(); i++) {
 
                         JSONObject fila = response.getJSONObject(i);
 
-                        int id = fila.getInt("id");
+                        int iden = fila.getInt("id");
                         String username = fila.getString("username");
                         String email = fila.getString("email");
                         String imagen = fila.getString("imagen");
@@ -194,14 +194,14 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
 
                         Usuarios usuarios = new Usuarios();
 
-                        usuarios.setId(id);
+                        usuarios.setId(iden);
                         usuarios.setUsername(username);
                         usuarios.setEmail(email);
                         usuarios.setImagen(imagen);
                         usuarios.setFecha_creacion(fecha_creacion);
 
-                        if (id == this.id) {
-                            tvID.setText("ID del Usuario" + id);
+                        if (iden == id) {
+                            tvID.setText("ID del Usuario" + iden);
                             tvCorreoPerfil.setText(email);
                             etUsername.setText(username);
                             NombreOriginal = username;
@@ -381,7 +381,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
 
     private void cambiarContra() {
         Intent intent = new Intent(PerfilActivity.this, NuevaContraActivity.class);
-        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_ID, id);
         startActivity(intent);
     }
 
