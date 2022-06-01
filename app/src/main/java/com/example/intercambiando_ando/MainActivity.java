@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String P_FOTO = "P_FOTO";
 
     public static final String U_ID = "U_ID";
-    public static final String U_USERNAME = "P_USERNAME";
-    public static final String U_EMAIL = "P_USERNAME";
-    public static final String U_IMAGEN = "P_IMAGEN";
+    public static final String U_USERNAME = "U_USERNAME";
+    public static final String U_EMAIL = "U_USERNAME";
+    public static final String U_IMAGEN = "U_IMAGEN";
     private static String NombreOriginal = "";
 
     private ImageView ivLogo, ivUsuario;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
     private int id = 0;
 
-    public static final String BASE_URL = "http://192.168.100.8/intercambiando/";
+    public static final String BASE_URL = "http://10.200.18.231/Intercambiando/";
 
     private RequestQueue requestQueue;
 
@@ -178,9 +178,8 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         Intent intent = getIntent();
 
         if (intent != null) {
-            String indicador = intent.getStringExtra(U_ID);
             NombreOriginal = intent.getStringExtra(U_USERNAME);
-            id = Integer.getInteger(indicador);
+            id = intent.getIntExtra(U_ID,0);
         }else{
             id = 0;
         }
