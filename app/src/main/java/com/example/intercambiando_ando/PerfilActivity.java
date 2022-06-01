@@ -67,6 +67,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
     public static final String U_USERNAME = "P_USERNAME";
     public static final String U_EMAIL = "P_USERNAME";
     public static final String U_IMAGEN = "P_IMAGEN";
+    public static String NombreOriginal = "";
 
     private int id = 0;
 
@@ -203,6 +204,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                             tvID.setText("ID del Usuario" + id);
                             tvCorreoPerfil.setText(email);
                             etUsername.setText(username);
+                            NombreOriginal = username;
                             tvUsuarioCreacion.setText("Fecha de Creacion del Usuario" + (int)fecha_creacion);
                             if (!imagen.equals("")) {
                                 Picasso.get().load(imagen).into(ibUsuario);
@@ -233,7 +235,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
         intent.putExtra(P_CREACION, producto.getCreacion());
         intent.putExtra(P_FOTO, producto.getFoto());
         intent.putExtra(U_ID, id);
-
+        intent.putExtra(U_USERNAME, NombreOriginal);
         startActivity(intent);
     }
 
@@ -317,7 +319,12 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
 
         switch (item.getItemId()){
             case R.id.menu_opc_nom:
-                cambiarNombre();
+                String usertag = etUsername.getText().toString().trim();
+                if (!usertag.equals(NombreOriginal)) {
+                    Intent intent = getIntent();
+                    id = intent.getIntExtra(U_ID,id);
+                    cambiarNombre();
+                }
                 break;
             case R.id.menu_opc_cam:
                 cambiarContra();
@@ -334,12 +341,10 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
         String usertag = etUsername.getText().toString().trim();
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = MainActivity.BASE_URL + "guardar.php";
+        String url = MainActivity.BASE_URL + "username.php";
 
         Map<String, String> mapa = new HashMap<>();
-        if (id != 0) {
-            mapa.put("id", id + "");
-        }
+        mapa.put("id", id + "");
         mapa.put("username", usertag);
 
         JSONObject parametros = new JSONObject(mapa);
@@ -383,11 +388,10 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
     private void borrarPerfil() {
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = MainActivity.BASE_URL + "borrar.php";
+        String url = MainActivity.BASE_URL + "eliminar.php";
         String usertag = etUsername.getText().toString().trim();
 
         Map<String, String> mapa = new HashMap<>();
-        mapa.put("id", id + "");
         mapa.put("username", usertag);
 
         JSONObject parametros = new JSONObject(mapa);

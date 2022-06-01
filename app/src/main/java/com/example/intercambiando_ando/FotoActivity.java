@@ -111,7 +111,7 @@ public class FotoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String iden = intent.getStringExtra(ID_CLAVE);
 
-        String url = MainActivity.BASE_URL + "Usuarios.php";
+        String url = MainActivity.BASE_URL + "imagen.php";
 
         Map<String, String> mapa = new HashMap<>();
 

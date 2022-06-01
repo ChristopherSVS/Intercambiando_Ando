@@ -188,10 +188,13 @@ public class NuevaSesionActivity extends AppCompatActivity {
         String Contrasena = etContrasenaConfi.getText().toString().trim();
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = MainActivity.BASE_URL + "guardar.php";
+        String url = MainActivity.BASE_URL + "username.php";
 
         Map<String, String> mapa = new HashMap<>();
 
+        if (id != 0) {
+            mapa.put("id", id + "");
+        }
         mapa.put("username", Nombre);
         mapa.put("password", Contrasena);
         mapa.put("email", Email);

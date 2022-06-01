@@ -58,7 +58,7 @@ public class RecuperarActivity extends AppCompatActivity {
 
     private void validacionEmail() {
 
-        String url = MainActivity.BASE_URL + "Usuarios.php";
+        String url = MainActivity.BASE_URL + "usuarios.php";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

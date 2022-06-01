@@ -85,7 +85,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
     private void verificaDatos() {
 
-        String url = MainActivity.BASE_URL + "Usuarios.php";
+        String url = MainActivity.BASE_URL + "usuarios.php";
         tvErrorUser.setVisibility(View.INVISIBLE);
         tvErrorContrasena.setVisibility(View.INVISIBLE);
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {

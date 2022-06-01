@@ -1,8 +1,5 @@
 package com.example.intercambiando_ando;
 
-import static com.example.intercambiando_ando.NuevaSesionActivity.ID_CLAVE;
-import static com.example.intercambiando_ando.NuevaSesionActivity.I_CLAVE;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,9 +44,9 @@ import java.util.Map;
 public class DescripcionActivity extends AppCompatActivity {
 
     private ImageButton ibProducto;
-    private TextView tvUserProducto, tvIDProducto;
+    private TextView tvUserProducto, tvIDProducto, tvEstadoInactivo;
     private EditText etNomProducto, etCatProducto;
-    private Button bOfertas;
+    private Button bRegistrar;
     private RadioGroup rgEstado, rgEstatus;
     private RadioButton rbNuevo, rbViejo, rbActivo, rbInactivo;
 
@@ -64,7 +60,9 @@ public class DescripcionActivity extends AppCompatActivity {
     public static final String P_FOTO = "P_FOTO";
 
     public static final String U_ID = "U_ID";
+    public static final String U_USERNAME = "U_USERNAME";
     private static final int ACCION_SELECCION_IMAGEN = 1;
+    public static String NombreOriginal = "";
 
     FirebaseDatabase database = null;
     DatabaseReference myRef = null;
@@ -83,6 +81,8 @@ public class DescripcionActivity extends AppCompatActivity {
         tvUserProducto = findViewById(R.id.tvUserProduto);
         tvIDProducto = findViewById(R.id.tvIDProducto);
 
+        tvEstadoInactivo = findViewById(R.id.tvEstadoInactivo);
+
         etNomProducto = findViewById(R.id.etNomProducto);
 
         etCatProducto = findViewById(R.id.etCatProducto);
@@ -95,18 +95,19 @@ public class DescripcionActivity extends AppCompatActivity {
         rbActivo = findViewById(R.id.rbActivo);
         rbInactivo = findViewById(R.id.rbInactivo);
 
-        bOfertas = findViewById(R.id.bOfertas);
+        bRegistrar = findViewById(R.id.bRegistrar);
 
         database = FirebaseDatabase.getInstance("https://intercambiandoando-c1a19-default-rtdb.firebaseio.com/");
         myRef = database.getReference("Imagen");
         storage = FirebaseStorage.getInstance();
         requestQueue = Volley.newRequestQueue(this);
 
-        bOfertas.setOnClickListener(new View.OnClickListener() {
+        configuraUI();
+
+        bRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DescripcionActivity.this, OfertasActivity.class);
-                startActivity(intent);
+                editarProducto();
             }
         });
 
@@ -120,6 +121,42 @@ public class DescripcionActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void configuraUI() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            NombreOriginal = intent.getStringExtra(U_USERNAME);
+            consultarProductos();
+            String estatus = intent.getStringExtra(P_ESTATUS);
+            String username = tvUserProducto.getText().toString().trim();
+            if (username.equals(NombreOriginal)){
+                bRegistrar.setVisibility(View.VISIBLE);
+                if(estatus.equals("Activo")){
+                    tvEstadoInactivo.setVisibility(View.INVISIBLE);
+                }else{
+                    tvEstadoInactivo.setVisibility(View.INVISIBLE);
+                }
+            }else{
+                bRegistrar.setVisibility(View.INVISIBLE);
+                if(estatus.equals("Activo")){
+                    tvEstadoInactivo.setVisibility(View.INVISIBLE);
+                }else{
+                    tvEstadoInactivo.setVisibility(View.INVISIBLE);
+                }
+            }
+        }else{
+            this.id = 0;
+            tvIDProducto.setText("ID del producto");
+            tvUserProducto.setText(intent.getStringExtra(U_USERNAME));
+            etNomProducto.setText("");
+            etCatProducto.setText("");
+            rbNuevo.setChecked(false);
+            rbViejo.setChecked(false);
+            rbActivo.setChecked(false);
+            rbInactivo.setChecked(false);
+            bRegistrar.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -152,13 +189,10 @@ public class DescripcionActivity extends AppCompatActivity {
     private void GuardarFoto(String toString) {
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        Intent intent = getIntent();
-        String iden = intent.getStringExtra(U_ID);
         String url = MainActivity.BASE_URL + "foto.php";
 
         Map<String, String> mapa = new HashMap<>();
 
-        this.id = Integer.getInteger(iden);
         mapa.put("id",String.valueOf(id));
         mapa.put("imagen", toString);
 
@@ -183,7 +217,6 @@ public class DescripcionActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
-        consultarProductos();
 
     }
 
@@ -237,6 +270,7 @@ public class DescripcionActivity extends AppCompatActivity {
 
                         if (product.equals(prop) && user.equals(username)) {
                             tvIDProducto.setText("Id del Producto: " + codigo);
+                            this.id = codigo;
                             etCatProducto.setText(categoria);
                             if(estado.equals("Nuevo")){
                                 rbNuevo.setChecked(true);
@@ -247,6 +281,7 @@ public class DescripcionActivity extends AppCompatActivity {
                                 rbActivo.setChecked(true);
                             }else{
                                 rbInactivo.setChecked(true);
+
                             }
                             if (!foto.equals("")) {
                                 Picasso.get().load(foto).into(ibProducto);
@@ -266,11 +301,24 @@ public class DescripcionActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
+        String username = tvUserProducto.getText().toString().trim();
+        if (username.equals(NombreOriginal)){
+            menu.findItem(R.id.menu_opc_editar).setVisible(true);
+            menu.findItem(R.id.menu_opc_eliminar).setVisible(true);
+            menu.findItem(R.id.menu_opc_ver).setVisible(true);
+        }else{
+            menu.findItem(R.id.menu_opc_editar).setVisible(false);
+            menu.findItem(R.id.menu_opc_eliminar).setVisible(false);
+            menu.findItem(R.id.menu_opc_ver).setVisible(false);
+        }
+
         int id_layout = R.menu.menu_opciones_3;
 
         getMenuInflater().inflate(id_layout,menu);
 
         return super.onCreateOptionsMenu(menu);
+
+
     }
 
     @Override
@@ -283,8 +331,8 @@ public class DescripcionActivity extends AppCompatActivity {
             case R.id.menu_opc_eliminar:
                 eliminarProducto();
                 break;
-            case R.id.menu_opc_ofer:
-                eliminarOferta();
+            case R.id.menu_opc_ver:
+                VerOferta();
                 break;
         }
 
@@ -310,17 +358,17 @@ public class DescripcionActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = MainActivity.BASE_URL + "guardar.php";
+        String url = MainActivity.BASE_URL + "new.php";
 
         Map<String, String> mapa = new HashMap<>();
         if (id != 0) {
-            mapa.put("id", id + "");
+            mapa.put("codigo", id + "");
         }
 
         mapa.put("producto", producto);
-        mapa.put("categoria", categoria);
         mapa.put("estatus", Estatus);
         mapa.put("estado", Estado);
+        mapa.put("categoria", categoria);
 
         JSONObject parametros = new JSONObject(mapa);
 
@@ -355,10 +403,41 @@ public class DescripcionActivity extends AppCompatActivity {
     }
 
     private void eliminarProducto() {
+        RequestQueue queue = Volley.newRequestQueue(this);
 
+        String url = MainActivity.BASE_URL + "quitar.php";
+
+        Map<String, String> mapa = new HashMap<>();
+        mapa.put("id", id + "");
+
+        JSONObject parametros = new JSONObject(mapa);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parametros, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getBoolean("ok")){
+                        Intent intent = new Intent(DescripcionActivity.this,PerfilActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DescripcionActivity.this, "Ha sucedido un error", Toast.LENGTH_SHORT).show();
+                Log.e("DescripcionActivity", error.getMessage());
+            }
+        });
+        queue.add(request);
     }
 
-    private void eliminarOferta() {
+    private void VerOferta() {
+        Intent intent = new Intent(DescripcionActivity.this, OfertasActivity.class);
+        startActivity(intent);
     }
 
 }

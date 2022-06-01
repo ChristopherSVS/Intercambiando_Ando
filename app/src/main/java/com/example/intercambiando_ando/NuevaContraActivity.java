@@ -82,7 +82,7 @@ public class NuevaContraActivity extends AppCompatActivity {
     }
 
     private void validacionContrasena() {
-        String url = MainActivity.BASE_URL + "Usuarios.php";
+        String url = MainActivity.BASE_URL + "usuarios.php";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -147,7 +147,7 @@ public class NuevaContraActivity extends AppCompatActivity {
         String nuevaContra = etNuevaContra.getText().toString().trim();
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = MainActivity.BASE_URL + "guardar.php";
+        String url = MainActivity.BASE_URL + "contra.php";
 
         Map<String, String> mapa = new HashMap<>();
         if (id != 0) {

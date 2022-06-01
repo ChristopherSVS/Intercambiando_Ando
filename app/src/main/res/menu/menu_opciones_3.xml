@@ -12,4 +12,10 @@
         android:icon="@android:drawable/ic_menu_delete"
         android:title="Eliminar producto"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_opc_ver"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="Ver Ofertas"
+        android:visible="false"
+        app:showAsAction="always" />
 </menu>

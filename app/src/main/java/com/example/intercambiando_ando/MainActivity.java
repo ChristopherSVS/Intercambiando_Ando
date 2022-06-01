@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String U_USERNAME = "P_USERNAME";
     public static final String U_EMAIL = "P_USERNAME";
     public static final String U_IMAGEN = "P_IMAGEN";
+    public static String NombreOriginal = "";
 
     private ImageView ivLogo, ivUsuario;
     private TextView tvUsuario, tvUserCorreo, tvUserID;
@@ -178,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
         if (intent != null) {
             String indicador = intent.getStringExtra(U_ID);
+            this.NombreOriginal = intent.getStringExtra(U_USERNAME);
             if (!indicador.equals("") || !indicador.equals(null) || !indicador.equals("0") || id != 0) {
                 this.id = Integer.getInteger(indicador);
             }
@@ -209,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         intent.putExtra(P_CREACION, producto.getCreacion());
         intent.putExtra(P_FOTO, producto.getFoto());
         intent.putExtra(U_ID, id);
-
+        intent.putExtra(U_USERNAME,NombreOriginal);
         startActivity(intent);
     }
 
@@ -309,6 +311,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
                     if (id == this.id) {
                         tvUsuario.setText(username);
+                        NombreOriginal = username;
                         tvUserCorreo.setText(email);
                         tvUserID.setText("ID del Usuario: " + id);
                         if (!imagen.equals("")){
@@ -397,6 +400,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     private void cerrarSesion() {
         this.id = 0;
         tvUsuario.setText("Anonimo");
+        NombreOriginal = "";
         tvUserCorreo.setText("Usuario no registrado");
         tvUserID.setText("ID del Usuario");
         ivUsuario.setImageResource(R.drawable.ic_launcher_foreground);
