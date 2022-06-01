@@ -28,9 +28,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoHolder> {
         this.onClickListener = onClickListener;
     }
 
-    public ProductoAdapter(MainActivity context, MainActivity mainActivity) {
-    }
-
     public void add(Producto producto){
         data.add(producto);
         notifyDataSetChanged();
@@ -57,8 +54,13 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoHolder> {
         long Creacion = producto.getCreacion();
         holder.getTvArticuloCreacion().setText("Publicado: "+ new Timestamp(Creacion));
 
-        Picasso.get().load(producto.getFoto()).into(holder.getIvArticulo());
-        holder.getIvArticulo();
+        if (producto.getFoto() != null){
+            Picasso.get().load(producto.getFoto()).into(holder.getIvArticulo());
+            holder.getIvArticulo().setVisibility(View.VISIBLE);
+        } else {
+            holder.getIvArticulo().setImageResource(R.drawable.ic_launcher_foreground);
+            holder.getIvArticulo().setVisibility(View.VISIBLE);
+        }
 
     }
 

@@ -11,16 +11,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,12 +32,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements ProductoAdapter.OnClickListener {
 
     public static final String P_PRODUCTO = "P_PRODUCTO";
     public static final String P_CODIGO = "P_CODIGO";
@@ -45,12 +52,17 @@ public class MainActivity extends AppCompatActivity {
     public static final String P_CREACION = "P_CREACION";
     public static final String P_FOTO = "P_FOTO";
 
+    public static final String U_ID = "U_ID";
+    public static final String U_USERNAME = "P_USERNAME";
+    public static final String U_EMAIL = "P_USERNAME";
+    public static final String U_IMAGEN = "P_IMAGEN";
 
     private ImageView ivLogo, ivUsuario;
-    private TextView tvUsuario, tvUserCorreo;
+    private TextView tvUsuario, tvUserCorreo, tvUserID;
     private SearchView svBuscar;
     private Spinner sEstados, sCategorias, sEstatus;
     private RecyclerView rvProductos;
+
     private int id = 0;
 
     public static final String BASE_URL = "http://192.168.100.8/intercambiando/";
@@ -76,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvUsuario = findViewById(R.id.tvUsuario);
         tvUserCorreo = findViewById(R.id.tvUserCorreo);
+        tvUserID = findViewById(R.id.tvUserID);
 
         ivLogo = findViewById(R.id.ivLogo);
         ivUsuario = findViewById(R.id.ivUsuario);
@@ -98,10 +111,13 @@ public class MainActivity extends AppCompatActivity {
         rvProductos.setLayoutManager(linearLayoutManager);
         requestQueue = Volley.newRequestQueue(this);
 
+        configuraUI();
+
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Producto producto = snapshot.getValue(Producto.class);;
+                Producto producto = snapshot.getValue(Producto.class);
+                adapter.add(producto);
             }
 
             @Override
@@ -155,16 +171,31 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
+    private void configuraUI() {
+        String user = "anonimo";
 
+        Intent intent = getIntent();
+
+        if (intent != null) {
+            String indicador = intent.getStringExtra(U_ID);
+            if (!indicador.equals("") || !indicador.equals(null) || !indicador.equals("0") || id != 0) {
+                this.id = Integer.getInteger(indicador);
+            }
+        }else{
+            this.id = 0;
+        }
+    }
 
     @Override
     protected void onStart() {
 
         super.onStart();
+
         consultarProductos();
 
     }
 
+    @Override
     public void onClick(int position) {
         Producto producto = adapter.leer(position);
         Intent intent = new Intent(MainActivity.this,DescripcionActivity.class);
@@ -177,12 +208,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(P_ESTATUS, producto.getEstatus());
         intent.putExtra(P_CREACION, producto.getCreacion());
         intent.putExtra(P_FOTO, producto.getFoto());
+        intent.putExtra(U_ID, id);
 
         startActivity(intent);
     }
 
     private void consultarProductos() {
-        String url = BASE_URL + "Productos.php";
+
+        String url = BASE_URL + "productos.php";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -199,6 +232,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void procesarLista(JSONArray response) {
+
+        String url = BASE_URL + "usuarios.php";
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                mostrarUsuario(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
+            }
+        });
+        requestQueue.add(request);
+
+        String user = tvUsuario.getText().toString().trim();
+
         if(response != null){
             try {
                 adapter.limpiar();
@@ -208,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
                     int codigo = fila.getInt("codigo");
                     String product = fila.getString("producto");
-                    String usuario = fila.getString("precio");
+                    String usuario = fila.getString("username");
                     String estado = fila.getString("estado");
                     String categoria = fila.getString("categoria");
                     String estatus = fila.getString("estatus");
@@ -226,13 +277,56 @@ public class MainActivity extends AppCompatActivity {
                     producto.setCreacion(creacion);
                     producto.setFoto(foto);
 
-                    adapter.add(producto);
-
+                    if (user != usuario) {
+                        adapter.add(producto);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void mostrarUsuario(JSONArray response) {
+
+        if(response != null){
+            try {
+                for (int i=0;i<response.length();i++){
+
+                    JSONObject fila = response.getJSONObject(i);
+
+                    int id = fila.getInt("id");
+                    String username = fila.getString("username");
+                    String email = fila.getString("email");
+                    String imagen = fila.getString("imagen");
+
+                    Usuarios usuarios = new Usuarios();
+
+                    usuarios.setId(id);
+                    usuarios.setUsername(username);
+                    usuarios.setEmail(email);
+                    usuarios.setImagen(imagen);
+
+                    if (id == this.id) {
+                        tvUsuario.setText(username);
+                        tvUserCorreo.setText(email);
+                        tvUserID.setText("ID del Usuario: " + id);
+                        if (!imagen.equals("")){
+                            Picasso.get().load(imagen).into(ivUsuario);
+                        }else{
+                            ivUsuario.setImageResource(R.drawable.ic_launcher_foreground);
+                        }
+                    }else{
+
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
     }
 
     @Override
@@ -284,19 +378,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mostrarPerfil() {
+        String username = tvUsuario.getText().toString().trim();
+        String email = tvUserCorreo.getText().toString().trim();
         Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_EMAIL, email);
+        intent.putExtra(U_USERNAME, username);
         startActivity(intent);
     }
 
     private void agregarProducto() {
+        String username = tvUsuario.toString().toString().trim();
         Intent intent = new Intent(MainActivity.this, DescripcionActivity.class);
+        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_USERNAME, username);
         startActivity(intent);
     }
 
     private void cerrarSesion() {
-        id = 0;
-        tvUsuario.setText("Bienvenido usuario anonimo");
+        this.id = 0;
+        tvUsuario.setText("Anonimo");
         tvUserCorreo.setText("Usuario no registrado");
+        tvUserID.setText("ID del Usuario");
+        ivUsuario.setImageResource(R.drawable.ic_launcher_foreground);
+        consultarProductos();
     }
 
 }

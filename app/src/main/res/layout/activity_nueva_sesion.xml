@@ -144,6 +144,7 @@
         android:layout_height="23dp"
         android:text="Las contraseñas no coinciden"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etContrasenaConfi" />
 
@@ -153,6 +154,7 @@
         android:layout_height="wrap_content"
         android:text="El nombre de usuario ya esta utilizado"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNombre" />
 
@@ -162,6 +164,7 @@
         android:layout_height="wrap_content"
         android:text="Correo de usuario invalido"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
 

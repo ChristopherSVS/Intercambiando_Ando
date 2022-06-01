@@ -3,7 +3,10 @@ package com.example.intercambiando_ando;
 public class Usuarios {
 
     private int id;
-    private String username, password, email;
+    private String username;
+    private String password;
+    private String email;
+    private String imagen;
     private long Fecha_creacion;
 
     public int getId() {
@@ -36,6 +39,14 @@ public class Usuarios {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public long getFecha_creacion() {

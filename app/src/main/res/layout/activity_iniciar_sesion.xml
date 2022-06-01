@@ -2,16 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="8dp"
     tools:context=".IniciarSesionActivity">
 
     <Button
         android:id="@+id/bRecuperar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:text="Recuperar Contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -67,20 +67,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvUser2"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/etContra"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvContrasena2"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <Button
         android:id="@+id/bIniciar"
         android:layout_width="wrap_content"
@@ -109,6 +95,7 @@
         android:layout_height="wrap_content"
         android:text="Correo de usuario incorrecto"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCorreo2" />
 
@@ -118,6 +105,29 @@
         android:layout_height="wrap_content"
         android:text="Contraseña de usuario incorrecta"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etContra" />
+
+    <EditText
+        android:id="@+id/etContra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvContrasena2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <CheckBox
+        android:id="@+id/cbVisibilidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visualizar Contraseña"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvErrorContrasena" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
