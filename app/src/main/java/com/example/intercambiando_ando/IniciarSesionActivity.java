@@ -96,7 +96,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
+                Log.e("IniciarSesionActivity", "Error de comunicacion: " + error.getMessage());
             }
         });
         requestQueue.add(request);

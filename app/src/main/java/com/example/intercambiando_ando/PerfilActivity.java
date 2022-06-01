@@ -209,8 +209,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                             } else {
                                 ibUsuario.setImageResource(R.drawable.ic_launcher_foreground);
                             }
-                        } else {
-
+                            break;
                         }
                     }
                 } catch (JSONException e) {
@@ -382,7 +381,38 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
     }
 
     private void borrarPerfil() {
+        RequestQueue queue = Volley.newRequestQueue(this);
 
+        String url = MainActivity.BASE_URL + "borrar.php";
+        String usertag = etUsername.getText().toString().trim();
+
+        Map<String, String> mapa = new HashMap<>();
+        mapa.put("id", id + "");
+        mapa.put("username", usertag);
+
+        JSONObject parametros = new JSONObject(mapa);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parametros, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getBoolean("ok")){
+                        Intent intent = new Intent(PerfilActivity.this,MainActivity.class);
+                        intent.putExtra(U_ID,0);
+                        startActivity(intent);
+                        finish();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(PerfilActivity.this, "Ha sucedido un error", Toast.LENGTH_SHORT).show();
+                Log.e("PerfilActivity", error.getMessage());
+            }
+        });
+        queue.add(request);
     }
-
 }

@@ -316,8 +316,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
                         }else{
                             ivUsuario.setImageResource(R.drawable.ic_launcher_foreground);
                         }
-                    }else{
-
+                        break;
                     }
                 }
             } catch (JSONException e) {
@@ -388,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     }
 
     private void agregarProducto() {
-        String username = tvUsuario.toString().toString().trim();
+        String username = tvUsuario.getText().toString().trim();
         Intent intent = new Intent(MainActivity.this, DescripcionActivity.class);
         intent.putExtra(U_ID, this.id);
         intent.putExtra(U_USERNAME, username);

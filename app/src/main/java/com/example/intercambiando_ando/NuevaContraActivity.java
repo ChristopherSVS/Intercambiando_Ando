@@ -91,7 +91,7 @@ public class NuevaContraActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
+                Log.e("NuevaContraActivity", "Error de comunicacion: " + error.getMessage());
             }
         });
         requestQueue.add(request);
@@ -120,19 +120,20 @@ public class NuevaContraActivity extends AppCompatActivity {
                     usuarios.setPassword(password);
                     usuarios.setEmail(email);
 
-
-                    if (!contra.equals(password)) {
-                        guardarNuevaContra();
-                        cambioNotificacion();
-                        this.id = id;
-                        Intent intent = new Intent(NuevaContraActivity.this, MainActivity.class);
-                        intent.putExtra(U_ID, id);
-                        intent.putExtra(U_USERNAME, username);
-                        intent.putExtra(U_EMAIL, email);
-                        intent.putExtra(U_IMAGEN, Image);
-                        startActivity(intent);
-                    }else{
-                        tvErrorContra.setVisibility(View.VISIBLE);
+                    if (id == this.id) {
+                        if (!contra.equals(password)) {
+                            guardarNuevaContra();
+                            cambioNotificacion();
+                            Intent intent = new Intent(NuevaContraActivity.this, MainActivity.class);
+                            intent.putExtra(U_ID, id);
+                            intent.putExtra(U_USERNAME, username);
+                            intent.putExtra(U_EMAIL, email);
+                            intent.putExtra(U_IMAGEN, Image);
+                            startActivity(intent);
+                            break;
+                        } else {
+                            tvErrorContra.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             } catch (JSONException e) {

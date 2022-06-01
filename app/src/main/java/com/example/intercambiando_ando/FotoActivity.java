@@ -38,7 +38,6 @@ import java.util.Map;
 public class FotoActivity extends AppCompatActivity {
 
     public static final String U_ID = "U_ID";
-    public static final String P_CODIGO = "P_CODIGO";
 
     private ImageView ivFoto;
     private FloatingActionButton fabSubir;
@@ -111,25 +110,14 @@ public class FotoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String iden = intent.getStringExtra(ID_CLAVE);
-        String ids = intent.getStringExtra(I_CLAVE);
+
+        String url = MainActivity.BASE_URL + "Usuarios.php";
 
         Map<String, String> mapa = new HashMap<>();
 
-        String consulta = "";
-
-        if (ids.equals("Usuarios")) {
-            consulta = "Usuarios.php";
-            this.id = Integer.getInteger(iden);
-            mapa.put("id",String.valueOf(id));
-            mapa.put("imagen", toString);
-        }
-        if (ids.equals("Productos")){
-            consulta = "Productos.php";
-            this.id = Integer.getInteger(iden);
-            mapa.put("codigo",String.valueOf(id));
-            mapa.put("foto", toString);
-        }
-        String url = MainActivity.BASE_URL + consulta;
+        this.id = Integer.getInteger(iden);
+        mapa.put("id",String.valueOf(id));
+        mapa.put("imagen", toString);
 
         JSONObject parametros = new JSONObject(mapa);
 
@@ -137,16 +125,9 @@ public class FotoActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 procesarRespuestaGuardado(response);
-                if(ids.equals("Usuarios")) {
-                    Intent intent = new Intent(FotoActivity.this, MainActivity.class);
-                    intent.putExtra(U_ID, id);
-                    startActivity(intent);
-                }
-                if (ids.equals("Productos")){
-                    Intent intent = new Intent(FotoActivity.this, DescripcionActivity.class);
-                    intent.putExtra(P_CODIGO, id);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(FotoActivity.this, MainActivity.class);
+                intent.putExtra(U_ID, id);
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override

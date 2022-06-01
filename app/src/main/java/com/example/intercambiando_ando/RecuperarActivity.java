@@ -67,7 +67,7 @@ public class RecuperarActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
+                Log.e("RecuperaActivity", "Error de comunicacion: " + error.getMessage());
             }
         });
         requestQueue.add(request);
@@ -97,6 +97,7 @@ public class RecuperarActivity extends AppCompatActivity {
                     if (correo.equals(email)) {
                         this.id = id;
                         enviarCorreo(email,username);
+                        break;
                     }else{
                         tvErrorEmail.setVisibility(View.VISIBLE);
                     }

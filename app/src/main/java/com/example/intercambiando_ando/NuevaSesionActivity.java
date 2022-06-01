@@ -121,7 +121,7 @@ public class NuevaSesionActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
+                Log.e("NuevaSesionActivity", "Error de comunicacion: " + error.getMessage());
             }
         });
         requestQueue.add(request);
@@ -163,6 +163,7 @@ public class NuevaSesionActivity extends AppCompatActivity {
                             if (pass.equals(contra)) {
                                 this.id = id;
                                 guardarDatos();
+                                break;
                             }else{
                                 tvContraError.setVisibility(View.VISIBLE);
                             }
@@ -204,7 +205,6 @@ public class NuevaSesionActivity extends AppCompatActivity {
                 usuarioNotificacion();
                 Intent intent = new Intent(NuevaSesionActivity.this, FotoActivity.class);
                 intent.putExtra(ID_CLAVE, id);
-                intent.putExtra(I_CLAVE, "Usuario");
                 startActivity(intent);
             }
         }, new Response.ErrorListener() {
