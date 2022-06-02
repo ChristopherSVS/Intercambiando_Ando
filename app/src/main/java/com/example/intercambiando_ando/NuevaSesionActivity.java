@@ -36,10 +36,15 @@ public class NuevaSesionActivity extends AppCompatActivity {
 
     public static final String I_CLAVE = "I_CLAVE";
     public static final String ID_CLAVE = "ID_CLAVE";
+    public static final String U_ID = "U_ID";
+    public static final String U_USERNAME = "U_USERNAME";
+    public static final String U_EMAIL = "U_USERNAME";
+
     private EditText etNombre, etCorreo, etContrasena, etContrasenaConfi;
     private TextView tvErrorName, tvErrorCorreo, tvContraError;
     private Button bCrearUsuario;
-    private int id = 0;
+
+    public int id = 0;
     private RequestQueue requestQueue;
 
     @Override
@@ -204,11 +209,8 @@ public class NuevaSesionActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parametros, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                procesarRespuestaGuardado(response);
                 usuarioNotificacion();
-                Intent intent = new Intent(NuevaSesionActivity.this, FotoActivity.class);
-                intent.putExtra(ID_CLAVE, id);
-                startActivity(intent);
+                procesarRespuestaGuardado(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -225,6 +227,14 @@ public class NuevaSesionActivity extends AppCompatActivity {
             boolean ok = response.getBoolean("ok");
             String error = response.getString("error");
             if (ok){
+                String Nombre = etNombre.getText().toString().trim();
+                String Email = etCorreo.getText().toString().trim();
+                String Contrasena = etContrasenaConfi.getText().toString().trim();
+                Intent intent = new Intent(NuevaSesionActivity.this, MainActivity.class);
+                intent.putExtra(U_ID, id);
+                intent.putExtra(U_USERNAME, Nombre);
+                intent.putExtra(U_EMAIL, Email);
+                startActivity(intent);
                 finish();
             }else {
                 Toast.makeText(NuevaSesionActivity.this, "Ha sucedido un error", Toast.LENGTH_SHORT).show();

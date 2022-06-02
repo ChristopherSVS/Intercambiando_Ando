@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String U_USERNAME = "U_USERNAME";
     public static final String U_EMAIL = "U_USERNAME";
     public static final String U_IMAGEN = "U_IMAGEN";
-    private static String NombreOriginal = "";
+
 
     private ImageView ivLogo, ivUsuario;
     private TextView tvUsuario, tvUserCorreo, tvUserID;
@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     private Spinner sEstados, sCategorias, sEstatus;
     private RecyclerView rvProductos;
 
-    private int id = 0;
+    public static int id = 0;
+    public static String NombreOriginal = "";
 
     public static final String BASE_URL = "http://192.168.100.8/Intercambiando/";
 
@@ -173,15 +174,35 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     }
 
     private void configuraUI() {
-        String user = "anonimo";
 
         Intent intent = getIntent();
 
         if (intent != null) {
             NombreOriginal = intent.getStringExtra(U_USERNAME);
-            id = intent.getIntExtra(U_ID,0);
+            id = intent.getIntExtra(U_ID, 0);
+            if(id!=0 && !NombreOriginal.equals("")) {
+                String url = BASE_URL + "usuarios.php";
+
+                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        mostrarUsuario(response);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
+                    }
+                });
+                requestQueue.add(request);
+
+                tvUsuario.setText(intent.getStringExtra(U_USERNAME));
+                tvUserID.setText(intent.getStringExtra(U_USERNAME));
+                tvUserCorreo.setText(intent.getStringExtra(U_EMAIL));
+            }
         }else{
             id = 0;
+            NombreOriginal = "";
         }
     }
 
@@ -198,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public void onClick(int position) {
         Producto producto = adapter.leer(position);
         Intent intent = new Intent(MainActivity.this,DescripcionActivity.class);
-
         intent.putExtra(P_PRODUCTO, producto.getProducto());
         intent.putExtra(P_CODIGO, producto.getCodigo());
         intent.putExtra(P_USER, producto.getUser());
@@ -232,22 +252,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
     private void procesarLista(JSONArray response) {
 
-        String url = BASE_URL + "usuarios.php";
-
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                mostrarUsuario(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("MainActivity", "Error de comunicacion: " + error.getMessage());
-            }
-        });
-        requestQueue.add(request);
-
-        String user = tvUsuario.getText().toString().trim();
+        String user = NombreOriginal;
 
         if(response != null){
             try {
@@ -276,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
                     producto.setCreacion(creacion);
                     producto.setFoto(foto);
 
-                    if (user != usuario) {
+                    if (!user.equals(usuario)) {
                         adapter.add(producto);
                     }
                 }
@@ -389,7 +394,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     private void agregarProducto() {
         String username = tvUsuario.getText().toString().trim();
         Intent intent = new Intent(MainActivity.this, DescripcionActivity.class);
-        intent.putExtra(U_ID, id);
         intent.putExtra(U_USERNAME, username);
         startActivity(intent);
     }

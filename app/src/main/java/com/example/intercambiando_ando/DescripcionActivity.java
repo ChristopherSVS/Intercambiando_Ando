@@ -43,6 +43,7 @@ import java.util.Map;
 
 public class DescripcionActivity extends AppCompatActivity {
 
+
     private ImageButton ibProducto;
     private TextView tvUserProducto, tvIDProducto, tvEstadoInactivo;
     private EditText etNomProducto, etCatProducto;
@@ -62,14 +63,14 @@ public class DescripcionActivity extends AppCompatActivity {
     public static final String U_ID = "U_ID";
     public static final String U_USERNAME = "U_USERNAME";
     private static final int ACCION_SELECCION_IMAGEN = 1;
-    public static String NombreOriginal = "";
 
     FirebaseDatabase database = null;
     DatabaseReference myRef = null;
     private FirebaseStorage storage;
 
     private RequestQueue requestQueue;
-    private int id = 0;
+    public int id = 0;
+    public String NombreOriginal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,11 +127,29 @@ public class DescripcionActivity extends AppCompatActivity {
     private void configuraUI() {
         Intent intent = getIntent();
         if (intent != null) {
-            NombreOriginal = intent.getStringExtra(U_USERNAME);
-            consultarProductos();
+            id = intent.getIntExtra(P_CODIGO,0);
+            tvIDProducto.setText(intent.getIntExtra(P_CODIGO,0));
+            tvUserProducto.setText(intent.getStringExtra(P_USER));
+            String username = intent.getStringExtra(NombreOriginal);
+            String estado = intent.getStringExtra(P_ESTADO);
             String estatus = intent.getStringExtra(P_ESTATUS);
-            String username = tvUserProducto.getText().toString().trim();
-            if (username.equals(NombreOriginal)){
+            etNomProducto.setText(intent.getStringExtra(P_PRODUCTO));
+            etCatProducto.setText(intent.getStringExtra(P_CATEGORIA));
+            if(estado.equals("Nuevo")){
+                rbNuevo.setChecked(true);
+                rbViejo.setChecked(false);
+            }else{
+                rbNuevo.setChecked(false);
+                rbViejo.setChecked(true);
+            }
+            if(estatus.equals("Activo")){
+                rbActivo.setChecked(true);
+                rbInactivo.setChecked(false);
+            }else{
+                rbActivo.setChecked(false);
+                rbInactivo.setChecked(true);
+            }
+            if (username.equals(MainActivity.NombreOriginal)){
                 bRegistrar.setVisibility(View.VISIBLE);
                 if(estatus.equals("Activo")){
                     tvEstadoInactivo.setVisibility(View.INVISIBLE);
@@ -147,8 +166,9 @@ public class DescripcionActivity extends AppCompatActivity {
             }
         }else{
             id = 0;
+            ibProducto.setImageResource(R.drawable.ic_launcher_foreground);
             tvIDProducto.setText("ID del producto");
-            tvUserProducto.setText(intent.getStringExtra(U_USERNAME));
+            tvUserProducto.setText("Nombre del usuario");
             etNomProducto.setText("");
             etCatProducto.setText("");
             rbNuevo.setChecked(false);
@@ -157,6 +177,7 @@ public class DescripcionActivity extends AppCompatActivity {
             rbInactivo.setChecked(false);
             bRegistrar.setVisibility(View.VISIBLE);
         }
+        consultarProductos();
     }
 
     @Override
@@ -166,7 +187,7 @@ public class DescripcionActivity extends AppCompatActivity {
             if (requestCode == ACCION_SELECCION_IMAGEN) {
                 Uri uri = data.getData();
 
-                StorageReference storageRef = storage.getReference().child("images/" + uri.getLastPathSegment() + "_" + System.currentTimeMillis());
+                StorageReference storageRef = storage.getReference().child("images/" + uri.getLastPathSegment());
 
                 storageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -302,7 +323,7 @@ public class DescripcionActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         String username = tvUserProducto.getText().toString().trim();
-        if (username.equals(NombreOriginal)){
+        if (username.equals(MainActivity.NombreOriginal)){
             menu.findItem(R.id.menu_opc_editar).setVisible(true);
             menu.findItem(R.id.menu_opc_eliminar).setVisible(true);
             menu.findItem(R.id.menu_opc_ver).setVisible(true);

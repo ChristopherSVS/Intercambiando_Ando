@@ -38,12 +38,14 @@ import java.util.Map;
 public class FotoActivity extends AppCompatActivity {
 
     public static final String U_ID = "U_ID";
+    public static final String U_USERNAME = "U_USERNAME";
+    public static final String U_EMAIL = "U_USERNAME";
+    public static final String U_IMAGEN = "U_IMAGEN";
 
     private ImageView ivFoto;
     private FloatingActionButton fabSubir;
     private static final int ACCION_SELECCION_IMAGEN = 1;
     private RequestQueue requestQueue;
-    private int id = 0;
 
     FirebaseDatabase database = null;
     DatabaseReference myRef = null;
@@ -83,7 +85,7 @@ public class FotoActivity extends AppCompatActivity {
             if (requestCode == ACCION_SELECCION_IMAGEN) {
                 Uri uri = data.getData();
 
-                StorageReference storageRef = storage.getReference().child("images/" + uri.getLastPathSegment() + "_" + System.currentTimeMillis());
+                StorageReference storageRef = storage.getReference().child("images/" + uri.getLastPathSegment());
 
                 storageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -109,14 +111,13 @@ public class FotoActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Intent intent = getIntent();
-        String iden = intent.getStringExtra(ID_CLAVE);
+        int iden = intent.getIntExtra(MainActivity.U_ID,0);
 
         String url = MainActivity.BASE_URL + "imagen.php";
 
         Map<String, String> mapa = new HashMap<>();
 
-        id = Integer.getInteger(iden);
-        mapa.put("id",String.valueOf(id));
+        mapa.put("id",String.valueOf(iden));
         mapa.put("imagen", toString);
 
         JSONObject parametros = new JSONObject(mapa);
@@ -125,9 +126,6 @@ public class FotoActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 procesarRespuestaGuardado(response);
-                Intent intent = new Intent(FotoActivity.this, MainActivity.class);
-                intent.putExtra(U_ID, id);
-                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
