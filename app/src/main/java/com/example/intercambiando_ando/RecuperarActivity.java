@@ -129,5 +129,6 @@ public class RecuperarActivity extends AppCompatActivity {
         Intent intent = new Intent(RecuperarActivity.this, CodigoActivity.class);
         intent.putExtra(U_ID, id);
         startActivity(intent);
+        finish();
     }
 }

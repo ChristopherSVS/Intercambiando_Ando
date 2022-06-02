@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
     private int id = 0;
 
-    public static final String BASE_URL = "http://10.200.18.231/Intercambiando/";
+    public static final String BASE_URL = "http://192.168.100.8/Intercambiando/";
 
     private RequestQueue requestQueue;
 
