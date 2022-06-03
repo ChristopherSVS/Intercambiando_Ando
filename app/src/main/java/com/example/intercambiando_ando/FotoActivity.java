@@ -46,6 +46,7 @@ public class FotoActivity extends AppCompatActivity {
     private FloatingActionButton fabSubir;
     private static final int ACCION_SELECCION_IMAGEN = 1;
     private RequestQueue requestQueue;
+    public int id = 0;
 
     FirebaseDatabase database = null;
     DatabaseReference myRef = null;
@@ -81,6 +82,10 @@ public class FotoActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Intent intent = getIntent();
+        id = intent.getIntExtra(NuevaSesionActivity.U_ID,0);
+        String username = intent.getStringExtra(NuevaSesionActivity.U_USERNAME);
+
         if (resultCode == RESULT_OK) {
             if (requestCode == ACCION_SELECCION_IMAGEN) {
                 Uri uri = data.getData();
@@ -95,6 +100,11 @@ public class FotoActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
 
+                                Usuarios usuarios = new Usuarios();
+                                usuarios.setId(id);
+                                usuarios.setUsername(username);
+                                usuarios.setImagen(uri.toString());
+                                myRef.push().setValue(usuarios);
                                 GuardarFoto(uri.toString());
 
                             }
@@ -110,14 +120,13 @@ public class FotoActivity extends AppCompatActivity {
     private void GuardarFoto(String toString) {
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        Intent intent = getIntent();
-        int iden = intent.getIntExtra(MainActivity.U_ID,0);
+        int iden = id;
 
         String url = MainActivity.BASE_URL + "imagen.php";
 
         Map<String, String> mapa = new HashMap<>();
 
-        mapa.put("id",String.valueOf(iden));
+        mapa.put("id", String.valueOf(iden));
         mapa.put("imagen", toString);
 
         JSONObject parametros = new JSONObject(mapa);

@@ -154,18 +154,9 @@ public class NuevaSesionActivity extends AppCompatActivity {
                     String Imagen = fila.getString("Imagen");
                     long creacion = fila.getLong("creacion");
 
-                    Usuarios usuarios = new Usuarios();
-
-                    usuarios.setId(iden);
-                    usuarios.setUsername(username);
-                    usuarios.setPassword(password);
-                    usuarios.setEmail(email);
-                    usuarios.setImagen(Imagen);
-                    usuarios.setFecha_creacion(creacion);
-
                     if (!nom.equals(username)) {
                         if(!cor.equals(email)){
-                            if (pass.equals(contra)) {
+                            if (pass.equals(contra) && pass.equals(password)) {
                                 id = iden;
                                 guardarDatos();
                                 break;
@@ -228,13 +219,9 @@ public class NuevaSesionActivity extends AppCompatActivity {
             String error = response.getString("error");
             if (ok){
                 String Nombre = etNombre.getText().toString().trim();
-                String Email = etCorreo.getText().toString().trim();
-                String Contrasena = etContrasenaConfi.getText().toString().trim();
-                Intent intent = new Intent(NuevaSesionActivity.this, MainActivity.class);
+                Intent intent = new Intent(NuevaSesionActivity.this, FotoActivity.class);
                 intent.putExtra(U_ID, id);
                 intent.putExtra(U_USERNAME, Nombre);
-                intent.putExtra(U_EMAIL, Email);
-                startActivity(intent);
                 finish();
             }else {
                 Toast.makeText(NuevaSesionActivity.this, "Ha sucedido un error", Toast.LENGTH_SHORT).show();

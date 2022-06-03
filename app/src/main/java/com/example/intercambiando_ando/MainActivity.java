@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static int id = 0;
     public static String NombreOriginal = "";
 
-    public static final String BASE_URL = "http://192.168.100.8/Intercambiando/";
+    public static final String BASE_URL = "http://192.168.100.1/Intercambiando/";
 
     private RequestQueue requestQueue;
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         rvProductos.setLayoutManager(linearLayoutManager);
         requestQueue = Volley.newRequestQueue(this);
 
-        configuraUI();
+        configUI();
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -143,14 +143,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             }
         });
 
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                rvProductos.scrollToPosition(adapter.getItemCount() -1);
-            }
-        });
-
         /*
         myRef.setValue("");
 
@@ -173,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         */
     }
 
-    private void configuraUI() {
+    private void configUI() {
 
         Intent intent = getIntent();
 
@@ -204,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             id = 0;
             NombreOriginal = "";
         }
+        consultarProductos();
     }
 
     @Override
@@ -304,12 +297,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
                     String email = fila.getString("email");
                     String imagen = fila.getString("imagen");
 
-                    Usuarios usuarios = new Usuarios();
-
-                    usuarios.setId(iden);
-                    usuarios.setUsername(username);
-                    usuarios.setEmail(email);
-                    usuarios.setImagen(imagen);
 
                     if (iden == id) {
                         tvUsuario.setText(username);

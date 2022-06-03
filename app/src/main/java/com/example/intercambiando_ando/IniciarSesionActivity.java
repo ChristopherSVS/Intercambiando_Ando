@@ -119,23 +119,16 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     String username = fila.getString("username");
                     String password = fila.getString("password");
                     String email = fila.getString("email");
-                    String Image = fila.getString("Image");
+                    String image = fila.getString("image");
 
-                    Usuarios usuarios = new Usuarios();
-
-                    usuarios.setId(id);
-                    usuarios.setUsername(username);
-                    usuarios.setPassword(password);
-                    usuarios.setEmail(email);
-                    usuarios.setImagen(Image);
 
                     if (correo.equals(email)) {
                         if (codigo.equals(password)) {
                             Intent intent = new Intent(IniciarSesionActivity.this, MainActivity.class);
-                            intent.putExtra(U_ID, usuarios.getId());
-                            intent.putExtra(U_USERNAME, usuarios.getUsername());
-                            intent.putExtra(U_EMAIL, usuarios.getEmail());
-                            intent.putExtra(U_IMAGEN, usuarios.getImagen());
+                            intent.putExtra(U_ID, id);
+                            intent.putExtra(U_USERNAME, username);
+                            intent.putExtra(U_EMAIL, email);
+                            intent.putExtra(U_IMAGEN, image);
                             startActivity(intent);
                             break;
                         }else{
