@@ -74,7 +74,7 @@ public class OfertasActivity extends AppCompatActivity implements ProductoAdapte
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Producto producto = snapshot.getValue(Producto.class);
-                adapter.add(producto);
+                adapter.agregar(producto);
             }
 
             @Override
@@ -173,7 +173,7 @@ public class OfertasActivity extends AppCompatActivity implements ProductoAdapte
                     producto.setEstatus(estatus);
                     producto.setFoto(foto);
 
-                    adapter.add(producto);
+                    adapter.agregar(producto);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

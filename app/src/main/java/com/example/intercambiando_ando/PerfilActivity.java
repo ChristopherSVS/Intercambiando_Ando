@@ -116,7 +116,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Producto producto = snapshot.getValue(Producto.class);
-                adapter.add(producto);
+                adapter.agregar(producto);
             }
 
             @Override
@@ -285,8 +285,8 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                     producto.setEstatus(estatus);
                     producto.setFoto(foto);
 
-                    if (user == usuario) {
-                        adapter.add(producto);
+                    if (user.equals(usuario)) {
+                        adapter.agregar(producto);
                     }
                 }
             } catch (JSONException e) {
