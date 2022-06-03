@@ -110,7 +110,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
         rvHistorial.setLayoutManager(linearLayoutManager);
         requestQueue = Volley.newRequestQueue(this);
 
-        ConfiguraIU();
+        ConfigIU();
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -151,15 +151,15 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PerfilActivity.this, FotoActivity.class);
-                intent.putExtra(ID_CLAVE, id);
-                intent.putExtra(I_CLAVE, "Usuario");
+                intent.putExtra(U_ID, id);
+                intent.putExtra(U_USERNAME, NombreOriginal);
                 startActivity(intent);
             }
         });
 
     }
 
-    private void ConfiguraIU() {
+    private void ConfigIU() {
         String url = MainActivity.BASE_URL + "usuarios.php";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -192,13 +192,6 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                         String imagen = fila.getString("imagen");
                         long fecha_creacion = fila.getLong("fecha_creacion");
 
-                        Usuarios usuarios = new Usuarios();
-
-                        usuarios.setId(iden);
-                        usuarios.setUsername(username);
-                        usuarios.setEmail(email);
-                        usuarios.setImagen(imagen);
-                        usuarios.setFecha_creacion(fecha_creacion);
 
                         if (iden == id) {
                             tvID.setText("ID del Usuario" + iden);
@@ -403,6 +396,7 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                     if (response.getBoolean("ok")){
                         Intent intent = new Intent(PerfilActivity.this,MainActivity.class);
                         intent.putExtra(U_ID,0);
+                        intent.putExtra(U_USERNAME,"");
                         startActivity(intent);
                         finish();
                     }

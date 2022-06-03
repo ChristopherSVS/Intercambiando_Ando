@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
             }
         });
-
         /*
         myRef.setValue("");
 

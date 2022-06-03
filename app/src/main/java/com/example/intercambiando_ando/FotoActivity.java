@@ -83,8 +83,8 @@ public class FotoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         Intent intent = getIntent();
-        id = intent.getIntExtra(NuevaSesionActivity.U_ID,0);
-        String username = intent.getStringExtra(NuevaSesionActivity.U_USERNAME);
+        id = intent.getIntExtra(U_ID,0);
+        String username = intent.getStringExtra(U_USERNAME);
 
         if (resultCode == RESULT_OK) {
             if (requestCode == ACCION_SELECCION_IMAGEN) {

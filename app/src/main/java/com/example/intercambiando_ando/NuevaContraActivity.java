@@ -107,25 +107,18 @@ public class NuevaContraActivity extends AppCompatActivity {
 
                     JSONObject fila = response.getJSONObject(i);
 
-                    int id = fila.getInt("id");
+                    int iden = fila.getInt("id");
                     String username = fila.getString("username");
                     String password = fila.getString("password");
                     String email = fila.getString("email");
                     String Image = fila.getString("Image");
 
-                    Usuarios usuarios = new Usuarios();
-
-                    usuarios.setId(id);
-                    usuarios.setUsername(username);
-                    usuarios.setPassword(password);
-                    usuarios.setEmail(email);
-
-                    if (id == this.id) {
+                    if (iden == id) {
                         if (!contra.equals(password)) {
                             guardarNuevaContra();
                             cambioNotificacion();
                             Intent intent = new Intent(NuevaContraActivity.this, MainActivity.class);
-                            intent.putExtra(U_ID, id);
+                            intent.putExtra(U_ID, iden);
                             intent.putExtra(U_USERNAME, username);
                             intent.putExtra(U_EMAIL, email);
                             intent.putExtra(U_IMAGEN, Image);
