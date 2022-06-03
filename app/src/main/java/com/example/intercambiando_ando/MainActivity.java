@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String P_ESTADO = "P_ESTADO";
     public static final String P_CATEGORIA = "P_CATEGORIA";
     public static final String P_ESTATUS = "P_ESTATUS";
-    public static final String P_CREACION = "P_CREACION";
     public static final String P_FOTO = "P_FOTO";
 
     public static final String U_ID = "U_ID";
@@ -217,7 +216,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         intent.putExtra(P_ESTADO, producto.getEstado());
         intent.putExtra(P_CATEGORIA, producto.getCategoria());
         intent.putExtra(P_ESTATUS, producto.getEstatus());
-        intent.putExtra(P_CREACION, producto.getCreacion());
         intent.putExtra(P_FOTO, producto.getFoto());
         intent.putExtra(U_ID, id);
         intent.putExtra(U_USERNAME,NombreOriginal);
