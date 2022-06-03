@@ -123,7 +123,6 @@ public class OfertasActivity extends AppCompatActivity implements ProductoAdapte
         intent.putExtra(P_ESTADO, producto.getEstado());
         intent.putExtra(P_CATEGORIA, producto.getCategoria());
         intent.putExtra(P_ESTATUS, producto.getEstatus());
-        intent.putExtra(P_CREACION, producto.getCreacion());
         intent.putExtra(P_FOTO, producto.getFoto());
         intent.putExtra(U_ID, id);
 
@@ -163,7 +162,6 @@ public class OfertasActivity extends AppCompatActivity implements ProductoAdapte
                     String categoria = fila.getString("categoria");
                     String estatus = fila.getString("estatus");
                     String foto = fila.getString("foto");
-                    long creacion = fila.getLong("creacion");
 
                     Producto producto = new Producto();
 
@@ -173,7 +171,6 @@ public class OfertasActivity extends AppCompatActivity implements ProductoAdapte
                     producto.setEstado(estado);
                     producto.setCategoria(categoria);
                     producto.setEstatus(estatus);
-                    producto.setCreacion(creacion);
                     producto.setFoto(foto);
 
                     adapter.add(producto);

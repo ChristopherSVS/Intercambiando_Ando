@@ -225,7 +225,6 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
         intent.putExtra(P_ESTADO, producto.getEstado());
         intent.putExtra(P_CATEGORIA, producto.getCategoria());
         intent.putExtra(P_ESTATUS, producto.getEstatus());
-        intent.putExtra(P_CREACION, producto.getCreacion());
         intent.putExtra(P_FOTO, producto.getFoto());
         intent.putExtra(U_ID, id);
         intent.putExtra(U_USERNAME, NombreOriginal);
@@ -275,7 +274,6 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                     String categoria = fila.getString("categoria");
                     String estatus = fila.getString("estatus");
                     String foto = fila.getString("foto");
-                    long creacion = fila.getLong("creacion");
 
                     Producto producto = new Producto();
 
@@ -285,7 +283,6 @@ public class PerfilActivity extends AppCompatActivity implements ProductoAdapter
                     producto.setEstado(estado);
                     producto.setCategoria(categoria);
                     producto.setEstatus(estatus);
-                    producto.setCreacion(creacion);
                     producto.setFoto(foto);
 
                     if (user == usuario) {
