@@ -140,6 +140,7 @@ public class NuevaContraActivity extends AppCompatActivity {
         String nuevaContra = etNuevaContra.getText().toString().trim();
 
         RequestQueue queue = Volley.newRequestQueue(this);
+
         String url = MainActivity.BASE_URL + "contra.php";
 
         Map<String, String> mapa = new HashMap<>();
