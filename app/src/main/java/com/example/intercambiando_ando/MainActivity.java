@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
                     String categoria = fila.getString("categoria");
                     String estatus = fila.getString("estatus");
                     String foto = fila.getString("foto");
-                    long creacion = fila.getLong("creacion");
+                    long creacion = fila.getLong("fecha_creacion");
 
                     Producto producto = new Producto();
 
@@ -270,8 +270,9 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
                     producto.setEstado(estado);
                     producto.setCategoria(categoria);
                     producto.setEstatus(estatus);
-                    producto.setCreacion(creacion);
                     producto.setFoto(foto);
+                    producto.setCreacion(creacion);
+
 
                     if (!user.equals(usuario)) {
                         adapter.add(producto);
