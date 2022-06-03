@@ -4,7 +4,6 @@ public class Producto {
 
     private int codigo;
     private String producto, user, estado, estatus, categoria, foto;
-    private long creacion;
 
     public int getCodigo() {
         return codigo;
@@ -52,14 +51,6 @@ public class Producto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public long getCreacion() {
-        return creacion;
-    }
-
-    public void setCreacion(long creacion) {
-        this.creacion = creacion;
     }
 
     public String getFoto() {

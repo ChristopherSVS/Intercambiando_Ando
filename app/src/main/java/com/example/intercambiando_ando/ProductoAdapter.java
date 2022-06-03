@@ -51,9 +51,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoHolder> {
         holder.getTvArticuloCategoria().setText(producto.getCategoria());
         holder.getTvArticuloEstatus().setText(producto.getEstatus());
 
-        long Creacion = producto.getCreacion();
-        holder.getTvArticuloCreacion().setText("Publicado: "+ new Timestamp(Creacion));
-
         if (producto.getFoto() != null){
             Picasso.get().load(producto.getFoto()).into(holder.getIvArticulo());
             holder.getIvArticulo().setVisibility(View.VISIBLE);

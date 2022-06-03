@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ProductoHolder extends RecyclerView.ViewHolder {
 
     private ImageView ivArticulo;
-    private TextView tvArticulo, tvPropietario, tvArticuloEstado, tvArticuloCategoria, tvArticuloEstatus, tvArticuloCreacion;
+    private TextView tvArticulo, tvPropietario, tvArticuloEstado, tvArticuloCategoria, tvArticuloEstatus;
 
     public ProductoHolder(@NonNull View itemView) {
         super(itemView);
@@ -22,7 +22,6 @@ public class ProductoHolder extends RecyclerView.ViewHolder {
         tvArticuloEstado = itemView.findViewById(R.id.tvArticuloEstado);
         tvArticuloCategoria = itemView.findViewById(R.id.tvArticuloCategoria);
         tvArticuloEstatus = itemView.findViewById(R.id.tvArticuloEstatus);
-        tvArticuloCreacion = itemView.findViewById(R.id.tvArticuloCreacion);
 
     }
 
@@ -74,11 +73,4 @@ public class ProductoHolder extends RecyclerView.ViewHolder {
         this.tvArticuloEstatus = tvArticuloEstatus;
     }
 
-    public TextView getTvArticuloCreacion() {
-        return tvArticuloCreacion;
-    }
-
-    public void setTvArticuloCreacion(TextView tvArticuloCreacion) {
-        this.tvArticuloCreacion = tvArticuloCreacion;
-    }
 }
