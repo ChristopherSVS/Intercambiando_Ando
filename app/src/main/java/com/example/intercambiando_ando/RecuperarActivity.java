@@ -50,7 +50,9 @@ public class RecuperarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tvErrorEmail.setVisibility(View.INVISIBLE);
-                validacionEmail();
+                //validacionEmail();
+                String correo = etCorreoRec.getText().toString().trim();
+                correo(correo);
             }
         });
 
