@@ -23,14 +23,9 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoHolder> {
     private OnClickListener onClickListener;
 
     public ProductoAdapter(Context context, OnClickListener onClickListener){
-        this.context = context;
         data = new ArrayList<>();
+        this.context = context;
         this.onClickListener = onClickListener;
-    }
-
-    public void add(Producto producto){
-        data.add(producto);
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -66,6 +61,11 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoHolder> {
 
         return data.size();
 
+    }
+
+    public void agregar(Producto producto){
+        data.add(producto);
+        notifyDataSetChanged();
     }
 
     public void limpiar() {

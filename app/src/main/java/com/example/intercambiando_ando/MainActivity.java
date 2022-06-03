@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Producto producto = snapshot.getValue(Producto.class);
-                adapter.add(producto);
+                adapter.agregar(producto);
             }
 
             @Override
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
 
                     if (!user.equals(usuario)) {
-                        adapter.add(producto);
+                        adapter.agregar(producto);
                     }
                 }
             } catch (JSONException e) {
