@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String U_EMAIL = "U_USERNAME";
     public static final String U_IMAGEN = "U_IMAGEN";
 
-    private ImageView ivLogo, ivUsuario;
+    private ImageButton ivUsuario;
     private TextView tvUsuario, tvUserCorreo, tvUserID;
     private SearchView svBuscar;
     private Spinner sEstados, sCategorias, sEstatus;
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
         tvUserCorreo = findViewById(R.id.tvUserCorreo);
         tvUserID = findViewById(R.id.tvUserID);
 
-        ivLogo = findViewById(R.id.ivLogo);
         ivUsuario = findViewById(R.id.ivUsuario);
 
         svBuscar = findViewById(R.id.svBuscar);
@@ -145,6 +145,15 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             public void onChanged() {
                 super.onChanged();
                 rvProductos.scrollToPosition(adapter.getItemCount() -1);
+            }
+        });
+        ivUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FotoActivity.class);
+                intent.putExtra(U_ID, id);
+                intent.putExtra(U_USERNAME, NombreOriginal);
+                startActivity(intent);
             }
         });
         /*

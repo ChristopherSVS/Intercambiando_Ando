@@ -25,14 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svBuscar" />
 
-    <ImageView
-        android:id="@+id/ivUsuario"
-        android:layout_width="113dp"
-        android:layout_height="102dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
-
     <TextView
         android:id="@+id/tvUsuario"
         android:layout_width="0dp"
@@ -41,6 +33,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ivUsuario"
         app:layout_constraintTop_toBottomOf="@+id/tvBienvenido" />
 
@@ -111,7 +104,16 @@
         android:text="Id del usuario"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ivUsuario"
         app:layout_constraintTop_toBottomOf="@+id/tvUserCorreo" />
+
+    <ImageButton
+        android:id="@+id/ivUsuario"
+        android:layout_width="129dp"
+        android:layout_height="109dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
