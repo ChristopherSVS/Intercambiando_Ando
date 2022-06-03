@@ -139,17 +139,21 @@ public class RecuperarActivity extends AppCompatActivity {
             numerocorreo += (int) (Math.random() * i) + 1;
         }
         id = numerocorreo;
-        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-        emailIntent.setType("text/html");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-        emailIntent.putExtra(android.content.Intent.EXTRA_TITLE, "Intercambiando-Ando, Recuperacion de Contraseña");
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Codigo para recuperar el usuario ");
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Codigo de recuperacion: "+ numerocorreo);
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Codigo de Recuperacion:" + numerocorreo);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Codigo de recuperacion:"+ numerocorreo); // * configurar email aquí!
+
         try {
-            //Enviamos el Correo iniciando una nueva Activity con el emailIntent.
-            startActivity(Intent.createChooser(emailIntent, "Enviar Correo de Recuperacion"));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(RecuperarActivity.this, "No hay ningun usuario con ese correo.", Toast.LENGTH_SHORT).show();
+            startActivity(Intent.createChooser(emailIntent, "Enviar email."));
+            Log.i("EMAIL", "Enviando email...");
+        }
+        catch (android.content.ActivityNotFoundException e) {
+            Toast.makeText(this, "NO existe ningún cliente de email instalado!.", Toast.LENGTH_SHORT).show();
         }
         envioCodigo();
     }
