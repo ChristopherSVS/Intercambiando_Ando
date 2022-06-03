@@ -103,7 +103,7 @@ public class DescripcionActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         requestQueue = Volley.newRequestQueue(this);
 
-        configuraUI();
+        configUI();
 
         bRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +124,7 @@ public class DescripcionActivity extends AppCompatActivity {
 
     }
 
-    private void configuraUI() {
+    private void configUI() {
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getIntExtra(P_CODIGO,0);
@@ -183,6 +183,10 @@ public class DescripcionActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        int codigo = Integer.getInteger(tvIDProducto.getText().toString().trim());
+        String username = tvUserProducto.getText().toString().trim();
+
         if (resultCode == RESULT_OK) {
             if (requestCode == ACCION_SELECCION_IMAGEN) {
                 Uri uri = data.getData();
@@ -196,7 +200,14 @@ public class DescripcionActivity extends AppCompatActivity {
                         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
+
+                                Producto producto = new Producto();
+                                producto.setCodigo(codigo);
+                                producto.setUser(username);
+                                producto.setFoto(uri.toString());
+                                myRef.push().setValue(producto);
                                 GuardarFoto(uri.toString());
+
                             }
                         });
 
@@ -236,9 +247,8 @@ public class DescripcionActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-
         super.onStart();
-
+        configUI();
     }
 
     private void consultarProductos() {
