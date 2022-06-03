@@ -266,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             try {
                 adapter.limpiar();
                 for (int i=0;i<response.length();i++){
-
                     JSONObject fila = response.getJSONObject(i);
 
                     int codigo = fila.getInt("codigo");
