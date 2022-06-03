@@ -129,6 +129,27 @@ public class RecuperarActivity extends AppCompatActivity {
         Intent intent = new Intent(RecuperarActivity.this, CodigoActivity.class);
         intent.putExtra(U_ID, id);
         startActivity(intent);
-        finish();
     }
+
+    private void correo(String email){
+        int numerocorreo = 0;
+        for(int i=0;i>=5;i++){
+            numerocorreo += (int) (Math.random() * i) + 1;
+        }
+        id = numerocorreo;
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setType("text/html");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        emailIntent.putExtra(android.content.Intent.EXTRA_TITLE, "Intercambiando-Ando, Recuperacion de Contraseña");
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Codigo para recuperar el usuario ");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Codigo de recuperacion: "+ numerocorreo);
+        try {
+            //Enviamos el Correo iniciando una nueva Activity con el emailIntent.
+            startActivity(Intent.createChooser(emailIntent, "Enviar Correo de Recuperacion"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(RecuperarActivity.this, "No hay ningun usuario con ese correo.", Toast.LENGTH_SHORT).show();
+        }
+        envioCodigo();
+    }
+
 }

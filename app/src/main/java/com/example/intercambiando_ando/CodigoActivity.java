@@ -37,8 +37,8 @@ public class CodigoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tvErrorCodigo.setVisibility(View.INVISIBLE);
-                String codigo = etCodigo.getText().toString().trim();
-                if (codigo == "112233") {
+                int codigo = Integer.getInteger(etCodigo.getText().toString().trim());
+                if (codigo == id) {
                     comprobarCodigo();
                 }
                 else{
@@ -50,7 +50,7 @@ public class CodigoActivity extends AppCompatActivity {
 
     private void comprobarCodigo() {
         Intent intent = new Intent(CodigoActivity.this, NuevaContraActivity.class);
-        intent.putExtra(U_ID, this.id);
+        intent.putExtra(U_ID,id+1);
         startActivity(intent);
     }
 
