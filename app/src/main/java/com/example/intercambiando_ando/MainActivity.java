@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static final String U_EMAIL = "U_USERNAME";
     public static final String U_IMAGEN = "U_IMAGEN";
 
-
     private ImageView ivLogo, ivUsuario;
     private TextView tvUsuario, tvUserCorreo, tvUserID;
     private SearchView svBuscar;
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
     public static int id = 0;
     public static String NombreOriginal = "";
 
-    public static final String BASE_URL = "http://192.168.100.8/Intercambiando/";
+    public static final String BASE_URL = "http://192.168.100.1/Intercambiando/";
 
     private RequestQueue requestQueue;
 
@@ -141,6 +140,13 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
 
             }
         });
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                rvProductos.scrollToPosition(adapter.getItemCount() -1);
+            }
+        });
         /*
         myRef.setValue("");
 
@@ -171,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             NombreOriginal = intent.getStringExtra(U_USERNAME);
             id = intent.getIntExtra(U_ID, 0);
             if(id!=0 && !NombreOriginal.equals("")) {
+
                 String url = BASE_URL + "usuarios.php";
 
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
