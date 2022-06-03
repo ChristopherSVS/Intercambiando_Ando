@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
                 startActivity(intent);
             }
         });
+
         /*
         myRef.setValue("");
 
@@ -176,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements ProductoAdapter.O
             }
         });
         */
+
     }
 
     private void configUI() {
